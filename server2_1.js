@@ -10,9 +10,9 @@ const { size } = require("lodash");
 const app = express();
 
 // listen for requests
-
-app.listen(3000, () => {
-  console.log("server started");
+var port_no=process.env.PORT || 3000
+app.listen(port_no, () => {
+  console.log(`server started for port no. ${port_no}`);
 }); // 1st parameter = port number , 2nd parameter = host ip(default = localhost)
 
 // it returns us the instance of the server, we can store this instance in a variable in order to use it later (for ex - in web sockets).
