@@ -270,23 +270,28 @@ function size_list(oEvent, prev_ele) {
   var size_list = oEvent.children;
   console.log(size_list);
   var sizeopt = prev_ele.value; // its working here because we are not using this attribute on getElementbyId function but rather on an oEvent.target ie- oEvent.target.value
-  console.log("item selected ->" + sizeopt);
-  console.log(price[items[sizeopt]]);
-  // console.log();
 
-  //   // accessing the json file based on the selection of the items list.
+  if(prev_ele!=='0')
+  {
+    console.log("item selected ->" + sizeopt);
+    console.log(price[items[sizeopt]]);
+    // console.log();
 
-  //   // document.getElementById("two").setAttribute("disabled", "disabled");
+    //   // accessing the json file based on the selection of the items list.
 
-  for (var i = 1; i <= 3; i++) {
-    var p_list = price[items[sizeopt]][size1[i]];
-    if (p_list == undefined) {
-      size_list[i].setAttribute("disabled", "disabled");
-      console.log(size_list[i]);
-    } else {
-      size_list[i].removeAttribute("disabled");
+    //   // document.getElementById("two").setAttribute("disabled", "disabled");
+
+    for (var i = 1; i <= 3; i++) {
+      var p_list = price[items[sizeopt]][size1[i]];
+      if (p_list == undefined) {
+        size_list[i].setAttribute("disabled", "disabled");
+        console.log(size_list[i]);
+      } else {
+        size_list[i].removeAttribute("disabled");
+      }
     }
   }
+  
 }
 
 // item.addEventListener("change",size_list);
