@@ -271,7 +271,7 @@ function size_list(oEvent, prev_ele) {
   console.log(size_list);
   var sizeopt = prev_ele.value; // its working here because we are not using this attribute on getElementbyId function but rather on an oEvent.target ie- oEvent.target.value
 
-  if(prev_ele!=='0')
+  if(sizeopt!=='0')
   {
     console.log("item selected ->" + sizeopt);
     console.log(price[items[sizeopt]]);
