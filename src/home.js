@@ -1,16 +1,170 @@
-var call = new XMLHttpRequest();
-call.open("GET", "./price.json");
-call.send();
-var price = null;
-var c1 = 1;
-// grabing the elements from the document
-var master = document.getElementById("frow");
 
-var box = document.getElementById("order_1");
-var item = document.getElementById("order-1");
 
-const ADD = document.getElementById("ADD");
-const RECEIPT = document.getElementById("RECEIPT");
+
+var div = document.createElement('div');
+div.innerHTML=`<div class="container-md" style="margin-top: 100px">
+<div
+  class="row align-content-center"
+  id="frow"
+  data-bs-spy="scroll"
+  data-bs-target="#list-example"
+  data-bs-offset="0"
+  tabindex="0"
+>
+  <div class="col-12 align-content-center text-center" id="r1">
+    <h
+      class="text-center fw-bold fst-italic display-1"
+      style="color: white; text-shadow: 0px 0px 10px"
+    >
+      JUMBO TRAY
+    </h>
+  </div>
+  <div
+    class="col-12 align-content-center text-md-center "
+    id="order_1 list-item-1"
+  >
+  <div class="input-group flex-nowrap mt-5">
+      <span class="input-group-text fs-4" >Name</span>
+      <input type="text" class="form-control" id="NAME" aria-label="Username" aria-describedby="addon-wrapping">
+      
+    </div>
+    <div class="input-group flex-nowrap mt-2">
+      <span class="input-group-text fs-4" >Phone Number</span>
+      <input type="text" class="form-control" id="PHONE" aria-label="Username" aria-describedby="addon-wrapping">
+      
+    </div>
+  </div>
+  <div
+    class="col-12 align-content-center text-md-center mt-5"
+    id="order_1"
+  >
+    <!-- name parameter links all the options together -->
+    <select
+      class="form-select form-select-lg mb-3 shadow"
+      aria-label=".form-select-lg example"
+      name="order-1"
+      id="order-1"
+    >
+      <option selected value="0">Select Item</option>
+      <option value="1">Veg Momos</option>
+      <option value="2">Paneer Momos</option>
+      <option value="3">Chowmine</option>
+      <option value="4">Finger chips</option>
+      <option value="5">Chilli Potato</option>
+      <option value="6">Dragon Momos</option>
+      <option value="7">Veg Burger</option>
+      <option value="8">Cheese Burger</option>
+      <option value="9">Cheese Loaded Finger Chips</option>
+      <option value="10">Manchurian</option>
+    </select>
+
+    <select
+      class="form-select form-select-lg mb-3 shadow"
+      aria-label=".form-select-lg example"
+      name="order-size-1"
+      id="order-size-1"
+    >
+      <option selected value="0">Select Plate Size</option>
+      <option value="1">Quarter Plate</option>
+      <option value="2">Half Plate</option>
+      <option value="3">Full Plate</option>
+    </select>
+
+    <select
+      class="form-select form-select-lg mb-3 shadow"
+      aria-label=".form-select-lg example"
+      name="order-quantity-1"
+      id="order-quantity-1"
+    >
+      <option selected value="0">Qty</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+    </select>
+
+    <button class="btn btn-danger col-12" disabled id="delete-1">
+      Delete Order
+    </button>
+    <hr class="border-5 border-top border-dark" />
+  </div>
+  <div id="jsnodes">
+    <div id="jsnodes1"></div>
+  </div>
+
+  <div class="col-12 text-center text-lg-end mt-3" id="order_1">
+    <button class="btn btn-warning col-lg-3 col-5" id="ADD">ADD</button>
+    <button
+      class="btn btn-success col-lg-3 col-5"
+      id="RECEIPT"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample"
+    >
+      Receipt
+    </button>
+    <!-- <hr class="border-5 border-top border-dark" /> -->
+  </div>
+
+  <div class="result">
+    <!-- side pop over for the results -->
+
+    <div
+      class="offcanvas offcanvas-end "
+      tabindex="-1"
+      id="offcanvasExample"
+      aria-labelledby="offcanvasExampleLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+          Receipt
+        </h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          id="side-close"
+        ></button>
+      </div>
+
+      <div class="offcanvas-body" id="result-body"></div>
+
+      <!-- <button class="btn btn-success fw-bold">SAVE</button> -->
+    </div>
+
+  </div>
+</div>
+</div>`;
+
+window.addEventListener("load",()=>
+{
+  document.getElementById('contain').append(div);
+  var call = new XMLHttpRequest();
+  call.open("GET", "./price.json");
+  call.send();
+  var price = null;
+  var c1 = 1;
+  // grabing the elements from the document
+  var master = document.getElementById("frow");
+  
+  var box = document.getElementById("order_1");
+  var item = document.getElementById("order-1");
+  
+  const ADD = document.getElementById("ADD");
+  const RECEIPT = document.getElementById("RECEIPT");
 
 var obj = {}; // payload for back-end to send this data to server
 var items = [
@@ -429,3 +583,4 @@ function side_canvas_close() {
 function del(oEvent) {
   document.getElementById("jsnodes1").removeChild(oEvent.path[1]);
 }
+});
