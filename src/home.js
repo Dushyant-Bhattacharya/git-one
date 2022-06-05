@@ -325,6 +325,26 @@ master.addEventListener("click", (oEvent) => {
   }
 });
 
+master.addEventListener("change", (oEvent) => {
+  // console.log("master hit");
+  // console.log(oEvent);
+
+  item = document.getElementById(oEvent.target.id);
+  if (oEvent.target.id.includes("order-1")) {
+    // console.log(item.nextElementSibling);
+    size_list(item.nextElementSibling, oEvent.target);
+  }
+
+  // remove class border-danger from all the 3 selects boxes , when any block is selected.
+
+  // only call this function when a target conatins order-1
+  //find the next sibling node and populate the enbaled options
+
+  if (oEvent.target.id.includes("delete-1")) {
+    del(oEvent);
+  }
+});
+
 //------------------------------------------------------------------------------------------
 
 var save_btn = undefined;
