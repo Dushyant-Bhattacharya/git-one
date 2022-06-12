@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const { size } = require("lodash");
+require('dotenv').config();
 
 // express app
 const app = express();
@@ -103,11 +104,11 @@ app.post("/saveData", bodyParser.json(), (req, res) =>
     // Database Code (mysql)
 
     const con = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "",
+      host: process.env.server_host,
+      user: process.env.server_username,
+      password: process.env.server_password,
       port:3306,
-      database:"jumbo_tray"
+      database:process.env.server_username
     });
 
     con.connect((err)=> 
